@@ -5,6 +5,7 @@ A curated collection of AI prompts designed to enhance collaboration with AI cod
 ## Overview
 
 This repository provides reusable prompts that help AI coding assistants work more effectively by:
+- **Memory Continuity**: Maintaining project context across sessions through structured documentation
 - **Clarifying Requirements**: Ensuring AI agents identify ambiguities and ask relevant questions before starting work
 - **Strategic Planning**: Guiding AI to create thoughtful implementation plans with multiple alternatives and clear steps
 - **Structured Development**: Promoting a methodical, step-by-step approach to coding tasks
@@ -13,17 +14,21 @@ This repository provides reusable prompts that help AI coding assistants work mo
 
 ## Table of Contents
 
+### Memory & Context
+- [Memory Bank System](./memory-bank/memorybank-rule.md) - Maintain project context across AI sessions
+- [Memory Bank Initialization Example](./memory-bank/memorybank-init-prompt.md) - Sample initialization for a project
+
 ### Development Workflow
 - [Clarification Questions](./clarification/clarification-questions.md)
 - [Planning Phase](./planning/planning-phase.md)
 
 ### Code Quality
-- [Code Review Standards](./code-review/code-review-standards.md)
+- [Code Review Checklist](./code-review/code-review-checklist.md)
 - [Testing Strategy](./testing/testing-strategy.md)
 
 ### Project Management
 - [Dependency Management](./dependencies/dependency-management.md)
-- [Git Commit Conventions](./git-workflow/git-commit-conventions.md)
+- [Git Commit Conventions](./git/git-commit-conventions.md)
 - [Backwards Compatibility](./compatibility/backwards-compatibility.md)
 
 ## Usage
