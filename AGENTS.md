@@ -26,12 +26,12 @@ Runtime: Bun. Infra: SST (Cloudflare Workers, R2, KV).
 <!-- List of main commands -->
 # Commands
 
-Dev mode - `npm run dev`
-Build - `npm run build`
-Run unit tests - `npm run test:unit`
-Run e2e tests - `npm run test:e2e`
-Lint - `npm run lint:fix`
-Typecheck - `npm run typecheck`
+Dev mode - `...`
+Build - `...`
+Run unit tests - `...`
+Run e2e tests - `...`
+Lint - `...`
+Typecheck - `...`
 
 <!-- Preferable code style - list only those not obvious from the code -->
 # Code style
