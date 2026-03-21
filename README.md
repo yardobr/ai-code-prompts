@@ -31,6 +31,16 @@ This repository provides reusable prompts that help AI coding assistants work mo
 - [Git Commit Conventions](./git/git-commit-conventions.md)
 - [Backwards Compatibility](./compatibility/backwards-compatibility.md)
 
+### Agents
+Specialized AI agents with defined roles for structured team-based development:
+- [Architect](./agents/architect.md) - Requirements gathering, design, and implementation planning
+- [Worker](./agents/worker.md) - Code implementation following the architect's plan
+- [Code Reviewer](./agents/code-reviewer.md) - Code review against target branch
+
+### Skills
+Reusable orchestration prompts that coordinate agents and workflows:
+- [Feature Team Orchestration](./skills/feature-team-orchestration/SKILL.md) - End-to-end feature delivery using the architect → worker → code-reviewer pipeline
+
 ## Usage
 
 Each prompt file can be used as a rule for AI tool of you choice (Cursor, Claude Code, Github Copilot etc.) or directly shared with your AI coding assistant to establish consistent behavior patterns across your development sessions.
