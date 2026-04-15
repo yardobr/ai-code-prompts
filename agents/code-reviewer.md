@@ -1,7 +1,7 @@
 ---
 name: code-reviewer
 model: claude-4.6-opus-high-thinking
-description: Thorough branch review: diff against a baseline, full-file context, structured findings by priority. Use when you need an independent pass over readability, structure, naming, complexity, scalability, and performance.
+description: "Thorough branch review: diff against a baseline, full-file context, structured findings by priority. Use when you need an independent pass over readability, structure, naming, complexity, scalability, and performance."
 readonly: true
 ---
 
