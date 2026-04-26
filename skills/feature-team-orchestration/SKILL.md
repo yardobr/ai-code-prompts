@@ -14,11 +14,17 @@ You are the **master** agent. You coordinate subagents to take a feature from id
 
 ## Subagents
 
-| Agent | Role | Definition file |
-|-------|------|-----------------|
-| **architect** | Requirements, design, markdown plan artifact | `.cursor/agents/architect.md` |
-| **worker** | Implementation | `.cursor/agents/worker.md` |
-| **code-reviewer** | Diff-based review | `.cursor/agents/code-reviewer.md` |
+| Agent | Role
+|-------|------|
+| **architect** | Requirements, design, markdown plan artifact |
+| **worker** | Implementation |
+| **code-reviewer** | Diff-based review |
+
+Agents definitions: you can find the agents' definitions by one of the following paths:
+ - .claude/agents - in Claude Code
+ - .cursor/agents - in Cursor
+ - .codex/agents - in Codex
+ - .opencode/agent - in OpenCode
 
 Do not ask subagents to coordinate each other; you are the only integration point.
 
@@ -38,7 +44,7 @@ Architect returns **markdown only** (no plan file edits from subagents). Expecte
 3. Persist the latest complete markdown to `plan.md` (draft saves mid-loop are allowed if useful for resumption).
 4. Prompt the **user** to review `plan.md` (path and/or short excerpt). Do not start Phase 2 until they approve (or explicitly waive review).
 
-## Phase 2 — Implementation and review (per plan step)
+## Phase 2 — Implementation and review
 
 For each step in `## Steps` (in order):
 
@@ -49,9 +55,12 @@ for each step:
          - exactly one scoped task: copy the single step’s title and body (from `### Step …` through its description).
        Expect the worker to finish **only** that scoped task and stop; spawn again for the next step.
     2. If blocked: invoke **architect** with the blocker and the **plan file path** (architect reads the current plan from disk); merge the architect’s revised markdown into plan.md yourself; re-invoke **worker** on the same or updated scoped task (still passing the plan path).
-    3. Invoke **code-reviewer** with baseline `dev` unless the user specified otherwise, plus plan path and instructions to review the **full** `git diff` of the branch vs that baseline (cumulative feature diff, not only the last commit).
-    4. For **critical** / **major** findings: pass them to **worker** as a new scoped “fix review” task (still one coherent scope per invocation where possible), then re-run **code-reviewer** on the full diff until no critical/major items remain. **Minor** items are noted but do not block advancing.
-    5. You edit plan.md to mark the step complete (checklist or status under that step) before moving on.
+    3. You edit plan.md to mark the step implemented (checklist or status under that step) before moving on.
+
+After all steps are implemented:
+    4. Invoke **code-reviewer** with baseline `dev` unless the user specified otherwise, plus plan path and instructions to review the **full** `git diff` of the branch vs that baseline (cumulative feature diff across all steps).
+    5. For **critical** / **major** findings: pass them to **worker** as a scoped “fix final review” task (still one coherent scope per invocation where possible), then re-run **code-reviewer** on the full diff until no critical/major items remain. **Minor** items are noted but do not block completion.
+    6. You edit plan.md to mark final review complete.
 ```
 
 ### Handoff details
@@ -62,11 +71,12 @@ for each step:
 
 ## Progress tracking
 
-After each step passes review, **you** update `plan.md` so a new session can resume at the next incomplete step.
+After each worker step is implemented, **you** update `plan.md` so a new session can resume at the next incomplete step. After the final review passes, update `plan.md` to record review completion.
 
 ## Rules
 
 - You do not implement product code; **worker** does.
 - You do not inspect source trees for your own understanding; **architect** / **worker** / **code-reviewer** read code as needed for their roles.
-- Never skip the review gate for a step unless the user explicitly changes quality rules.
+- Never run code review until all implementation steps are done, unless the user explicitly changes quality rules.
+- Never skip the final review gate unless the user explicitly changes quality rules.
 - Keep the user posted with short summaries after each step.
