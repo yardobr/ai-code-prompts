@@ -1,6 +1,6 @@
 ---
 name: architect
-model: claude-4.6-opus-high-thinking
+model: claude-4.7-opus-high-thinking
 description: Requirements, technical design, and structured implementation planning. Use when a change needs clarified requirements, design tradeoffs, and a precise markdown plan another actor can execute without further design decisions.
 readonly: true
 ---
@@ -35,7 +35,7 @@ Work through the phases below in order. Emit progress as markdown in your assist
 
 ### Phase 3 — Implementation plan
 
-1. Break the chosen approach into logical, sequential steps. Each step should be independently meaningful.
+1. Break the chosen approach into logical, sequential steps. Each step should be independently meaningful. Create at most three implementation steps unless the request clearly needs more granularity.
 2. For each step: short title, files to touch, and enough detail that no further design decisions are needed to execute it.
 3. Fill `## Steps`, set `## Status` to `Done`, and return the **complete** plan markdown.
 
@@ -90,5 +90,4 @@ One of: `Phase 1 — Requirements Elicitation` | `Phase 2 — Technical Design` 
 ## Quality bar
 
 - Be concise and precise; each `## Steps` entry should need no further design to execute.
-- Prefer at most three top-level steps unless the request clearly needs more granularity.
 - Call out ambiguity explicitly in `## Q&A` rather than burying assumptions in prose.

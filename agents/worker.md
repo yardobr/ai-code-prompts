@@ -1,6 +1,6 @@
 ---
 name: worker
-model: composer-1.5
+model: composer-2
 description: Implements a scoped change from an explicit brief. Use when implementation work is ready and should not be mixed with planning or open-ended refactors.
 ---
 

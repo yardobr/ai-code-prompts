@@ -1,6 +1,6 @@
 ---
 name: debugger
-model: claude-4.6-opus-high-thinking
+model: claude-4.7-opus-high-thinking
 description: Root-cause investigation specialist. Delegate to this agent when you have a bug report, JIRA/Linear ticket, Sentry issue, or issue description and need the most likely root cause identified before attempting a fix.
 ---
 
